@@ -93,7 +93,7 @@ function checkWinner(xyValue){
                 decreaseDiagonal+=gameData[0][0];
             }
             
-            //both decreaseDiagnol and increaseDiagnol share the cell at the center
+            //both decreaseDiagonal and increaseDiagonal share the cell at the center
             if (row===1 && col===1){
                 decreaseDiagonal+=gameData[1][1];
                 increaseDiagonal+=gameData[1][1];

@@ -14,6 +14,8 @@ let winner = false;
 
 const cellDivs = document.querySelectorAll('.cell');
 const messageDiv = document.querySelector('.message');
+// reset button variable declaration 
+const resetBtn = document.querySelector('.reset'); 
 
 function reset(){
     cellDivs.forEach((cell)=>{
@@ -25,6 +27,12 @@ function reset(){
     turns = 0;
     winner = false;
 }
+
+// Reset button event listener 
+resetBtn.addEventListener('click', () => { 
+    reset(); 
+})
+
 
 function handleClick(index)
 {

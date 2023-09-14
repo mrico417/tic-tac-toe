@@ -16,7 +16,7 @@ body:hover {
     width: 300px;
     overflow: hidden;
     background-color: white;
-    
+
 }
 
 .message {
@@ -41,4 +41,20 @@ body:hover {
 
 .cell:hover {
     background-color: gold;
+}
+
+/* RESET BUTTON */
+
+.reset { 
+    display: block;
+    margin: 0 auto; 
+    font-size: 1em;
+    background-color: gold;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset:hover { 
+    background-color: darkgoldenrod;
 }

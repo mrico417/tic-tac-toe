@@ -65,26 +65,57 @@ function checkWinner(xyValue){
     let col0 = "";
     let col1 = "";
     let col2 = "";
+    let decreaseDiagonal = ""; //check if x|y wins with \ pattern
+    let increaseDiagonal = ""; //check if x|y wins with / pattern
     for(let row = 0; row < 3; row++){
         
         let sumRow = "";
         for(let col=0; col <3; col++){
             sumRow += gameData[row][col];
 
+            //check for column0 pattern
             if (col===0){
                 col0+=gameData[row][0];
             }
 
+            //check for column1 pattern
             if (col===1){
                 col1+=gameData[row][1];
             }
-            
+
+            //check for column2 pattern
             if (col===2){
                 col2+=gameData[row][2];
             }
+
+            //check for decreaseDiag pattern \
+            if (row===0 && col===0){
+                decreaseDiagonal+=gameData[0][0];
+            }
+            
+            //both decreaseDiagnol and increaseDiagnol share the cell at the center
+            if (row===1 && col===1){
+                decreaseDiagonal+=gameData[1][1];
+                increaseDiagonal+=gameData[1][1];
+            }
+
+            if (row===2 && col===2){
+                decreaseDiagonal+=gameData[2][2];
+            }
+
+            //check for increaseDiag pattern /
+            if(row===0 && col===2){
+                increaseDiagonal+=gameData[0][2];
+            }
+
+            if(row===2 && col===0){
+                increaseDiagonal+=gameData[2][0];
+            }
+
+            
         }
         
-        if(player===sumRow || player===col0 || player===col1 || player===col2){
+        if(player===sumRow || player===col0 || player===col1 || player===col2 || player===decreaseDiagonal || player===increaseDiagonal){
             messageDiv.textContent = "Player " + xyValue + " WINS!!!";
             winner = true;
             return

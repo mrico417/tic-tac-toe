@@ -15,10 +15,22 @@ let winner = false;
 const cellDivs = document.querySelectorAll('.cell');
 const messageDiv = document.querySelector('.message');
 
+function reset(){
+    cellDivs.forEach((cell)=>{
+        cell.textContent = "";
+    });
+    messageDiv.textContent = "";
+    xoArray = createXOArray();
+    gameData = initGameData();
+    turns = 0;
+    winner = false;
+}
+
 function handleClick(index)
 {
     
     if (winner==true){
+        reset()
         return
     }
 

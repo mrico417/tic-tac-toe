@@ -40,16 +40,19 @@ function handleClick(index)
 
     //increase the number of turns
     turns++;
-
     console.log({gameData});
+
+    if (turns < 5){
+        return
+    }
+
+    
     checkWinner(xy);    
 }
 
 function checkWinner(xyValue){
     
-    if (turns < 5){
-        return "";
-    }
+   
 
     let player = "";
     if (xyValue==="X"){

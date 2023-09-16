@@ -78,10 +78,12 @@ function handleClick(index)
     turns++;
     console.log({gameData});
 
-    if (turns < 5){
-        return
+    if (turns > 4){
+        winner = checkWinner(xy);        
     }
-    checkWinner(xy);    
+
+    return
+    
 }
 
 function checkWinner(xyValue){
@@ -152,8 +154,7 @@ function checkWinner(xyValue){
         
         if(player===sumRow || player===col0 || player===col1 || player===col2 || player===decreaseDiagonal || player===increaseDiagonal){
             messageDiv.textContent = "Player " + xyValue + " WINS!!!";
-            winner = true;
-            return
+            return true;
         }
 
     }

@@ -6,14 +6,24 @@ function initGameData(){
     return [["","",""],["","",""],["","",""]];
 }
 
+//assign cellDivs as constant
+const cellDivs = document.querySelectorAll('.cell');
 
-let xoArray = createXOArray();
+//add event listener to tic-tac-toe cell
+for(let idx = 0; idx < cellDivs.length; idx++){
+    cellDivs[idx].addEventListener('click',()=>{
+        handleClick(idx);      
+    });
+}
+
+let xyArray = createXOArray();
 let gameData = initGameData();
 let turns = 0;
 let winner = false;
 
-const cellDivs = document.querySelectorAll('.cell');
+//assign messageDiv as const to display the winner
 const messageDiv = document.querySelector('.message');
+
 // reset button variable declaration 
 const resetBtn = document.querySelector('.reset'); 
 
@@ -22,7 +32,7 @@ function reset(){
         cell.textContent = "";
     });
     messageDiv.textContent = "";
-    xoArray = createXOArray();
+    xyArray = createXOArray();
     gameData = initGameData();
     turns = 0;
     winner = false;
@@ -37,13 +47,19 @@ resetBtn.addEventListener('click', () => {
 function handleClick(index)
 {
     
+    //if there is a winner, reset the game
     if (winner==true){
         reset()
         return
+    
+    //if cell already is not blank (i.e it has X or Y) then retun to exit
+    } else if (cellDivs[index].textContent!=""){
+        return
     }
 
+
     //store the XY
-    let xy = xoArray.pop();
+    let xy = xyArray.pop();
 
     //display XY 
     cellDivs[index].textContent = xy;
@@ -65,14 +81,10 @@ function handleClick(index)
     if (turns < 5){
         return
     }
-
-    
     checkWinner(xy);    
 }
 
 function checkWinner(xyValue){
-    
-   
 
     let player = "";
     if (xyValue==="X"){
@@ -147,21 +159,3 @@ function checkWinner(xyValue){
     }
 
 }
-for(let idx = 0; idx < cellDivs.length; idx++){
-    cellDivs[idx].addEventListener('click',function(){
-        cellDivs[idx].textContent === "" ? handleClick(idx) : false;       
-
-    });
-}
-
-
-/*
-document.querySelectorAll('.cell').forEach((cell)=> {
-    cell.addEventListener('click', ()=> {
-       
-        cell.textContent === "" ? cell.textContent = xoArray.pop() : false;
-        
-    });
-});
-
-*/

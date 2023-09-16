@@ -6,10 +6,10 @@ function initGameData(){
     return [["","",""],["","",""],["","",""]];
 }
 
-//assign cellDivs as constant
+// assign cellDivs as constant
 const cellDivs = document.querySelectorAll('.cell');
 
-//add event listener to tic-tac-toe cell
+// add event listener to tic-tac-toe cell
 for(let idx = 0; idx < cellDivs.length; idx++){
     cellDivs[idx].addEventListener('click',()=>{
         handleClick(idx);      
@@ -21,12 +21,11 @@ let gameData = initGameData();
 let turns = 0;
 let winner = false;
 
-//assign messageDiv as const to display the winner
+// assign messageDiv as const to display the winner
 const messageDiv = document.querySelector('.message');
 
-// reset button variable declaration 
-const resetBtn = document.querySelector('.reset'); 
 
+// function to reset the game
 function reset(){
     cellDivs.forEach((cell)=>{
         cell.textContent = "";
@@ -38,6 +37,9 @@ function reset(){
     winner = false;
 }
 
+// reset button variable declaration 
+const resetBtn = document.querySelector('.reset'); 
+
 // Reset button event listener 
 resetBtn.addEventListener('click', () => { 
     reset(); 
@@ -47,24 +49,24 @@ resetBtn.addEventListener('click', () => {
 function handleClick(index)
 {
     
-    //if there is a winner, reset the game
-    if (winner==true){
+    // if there is a winner, reset the game
+    if (winner){
         reset()
         return
     
-    //if cell already is not blank (i.e it has X or Y) then retun to exit
+    // if cell already is not blank (i.e it has X or Y) then retun to exit
     } else if (cellDivs[index].textContent!=""){
         return
     }
 
 
-    //store the XY
+    // store the XY
     let xy = xyArray.pop();
 
-    //display XY 
+    // display XY 
     cellDivs[index].textContent = xy;
 
-    //update the gameData array
+    // update the gameData array
     if (index < 3){
         gameData[0][index] = xy;
     } else if (index < 6){
@@ -74,10 +76,11 @@ function handleClick(index)
         gameData[2][index-6] = xy;
     }
 
-    //increase the number of turns
+    // increase the number of turns
     turns++;
     console.log({gameData});
 
+    // only if more than four turns have been played, check for winner
     if (turns > 4){
         winner = checkWinner(xy);        
     }

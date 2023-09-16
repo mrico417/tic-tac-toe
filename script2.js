@@ -1,4 +1,4 @@
-function createXOArray(){
+function createXYArray(){
     return ["X","Y","X","Y","X","Y","X","Y","X"];
 }
 
@@ -16,7 +16,7 @@ for(let idx = 0; idx < cellDivs.length; idx++){
     });
 }
 
-let xyArray = createXOArray();
+let xyArray = createXYArray();
 let gameData = initGameData();
 let turns = 0;
 let winner = false;
@@ -32,7 +32,7 @@ function reset(){
         cell.textContent = "";
     });
     messageDiv.textContent = "";
-    xyArray = createXOArray();
+    xyArray = createXYArray();
     gameData = initGameData();
     turns = 0;
     winner = false;
